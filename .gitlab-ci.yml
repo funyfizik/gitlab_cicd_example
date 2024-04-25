@@ -1,0 +1,17 @@
+default:
+  before_script:    #check docker 
+    - docker info
+
+build_image:    #build image
+  script:
+    - docker build -t my-docker-image .
+    - docker run -it -d -p 8080:80 --name web my-docker-image
+
+test_image:   #some test
+  script:
+    - echo 'OK'
+
+test_image2:   #stop and rm image
+  script:
+    - docker stop web
+    - docker rm web
